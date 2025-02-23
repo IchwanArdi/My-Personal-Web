@@ -49,3 +49,31 @@ body {
 .nav-link.test {
   text-decoration: underline;
 }
+
+/* hamburger */
+#hamburger {
+  width: 35px;
+  height: 20px;
+  cursor: pointer;
+}
+
+#hamburger span {
+  margin-top: 5px;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(139, 138, 138);
+}
+
+/* Efek saat hamburger aktif */
+.hamburger-active > span:nth-child(1) {
+  transform: translateY(8px) rotate(50deg);
+}
+
+.hamburger-active > span:nth-child(2) {
+  transform: translateY(-8px) rotate(-50deg);
+}
+
+#nav-slide {
+  height: 100vh;
+}
