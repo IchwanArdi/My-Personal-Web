@@ -1,0 +1,40 @@
+{
+  "project": [
+    {
+      "kategori": "website",
+      "tanggal": "12/02/25",
+      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "gambar": "1.jpg"
+    },
+    {
+      "kategori": "game",
+      "tanggal": "12/02/25",
+      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "gambar": "2.jpg"
+    },
+    {
+      "kategori": "nodejs",
+      "tanggal": "12/02/25",
+      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "gambar": "3.jpg"
+    },
+    {
+      "kategori": "website",
+      "tanggal": "12/02/25",
+      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "gambar": "4.jpg"
+    },
+    {
+      "kategori": "game",
+      "tanggal": "12/02/25",
+      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "gambar": "5.jpg"
+    },
+    {
+      "kategori": "website",
+      "tanggal": "12/02/25",
+      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "gambar": "6.jpg"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+
+/* Untuk Chrome, Edge, dan Safari */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Untuk Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Untuk Internet Explorer & Edge versi lama */
+body {
+  -ms-overflow-style: none;
+}
+
+#picture {
+  font-family: 'Grechen Fuemen', serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.group a,
+.judul-content {
+  font-family: 'Noto Sans Hanunoo', serif;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.navbar-fixed {
+  backdrop-filter: blur(5px);
+  box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.filter button {
+  font-family: 'Noto Sans Hanunoo', serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.nav-link.active {
+  color: white; /* Ganti dengan warna yang mencolok */
+  font-weight: bold;
+}
+
+.nav-link.test {
+  text-decoration: underline;
+}
