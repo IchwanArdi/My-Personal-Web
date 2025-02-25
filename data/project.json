@@ -1,40 +1,46 @@
 {
   "project": [
     {
-      "kategori": "website",
-      "tanggal": "12/02/25",
-      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "gambar": "1.jpg"
-    },
-    {
-      "kategori": "game",
-      "tanggal": "12/02/25",
-      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "gambar": "2.jpg"
+      "kategori": "nodejs",
+      "tanggal": "2/18/25",
+      "judul": "Website Kuliner Purwokerto dengan Node.js",
+      "gambar": "kuliner.png",
+      "link": "https://website-kuliner-test.vercel.app/"
     },
     {
       "kategori": "nodejs",
-      "tanggal": "12/02/25",
-      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "gambar": "3.jpg"
+      "tanggal": "10/27/24",
+      "judul": "Website Pencarian Film dengan API di Node.js",
+      "gambar": "movie.png",
+      "link": "https://ichwan-movie.vercel.app/"
     },
     {
       "kategori": "website",
-      "tanggal": "12/02/25",
-      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "gambar": "4.jpg"
+      "tanggal": "10/28/24",
+      "judul": "Website Portofolio Modern dengan Tailwind CSS",
+      "gambar": "website1.png",
+      "link": "https://portfolio-using-tailwind-css-sepia.vercel.app/"
+    },
+    {
+      "kategori": "website",
+      "tanggal": "10/21/24",
+      "judul": "Website Blog dengan Bootstrap",
+      "gambar": "blog.png",
+      "link": "https://my-blog-website-jet.vercel.app/"
+    },
+    {
+      "kategori": "website",
+      "tanggal": "8/16/24",
+      "judul": "Website Portofolio Modern dengan Bootstrap",
+      "gambar": "website2.png",
+      "link": "https://project-calculator-v1.vercel.app/"
     },
     {
       "kategori": "game",
-      "tanggal": "12/02/25",
-      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "gambar": "5.jpg"
-    },
-    {
-      "kategori": "website",
-      "tanggal": "12/02/25",
-      "judul": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "gambar": "6.jpg"
+      "tanggal": "8/8/24",
+      "judul": "Kalkulator Sederhana dengan HTML, CSS, dan JavaScript",
+      "gambar": "kalkulator.png",
+      "link": "https://project-calculator-v1.vercel.app/"
     }
   ]
 }
