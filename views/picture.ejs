@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../dist/img/Logo.png" type="image/png" />
-    <link href="../src/output.css" rel="stylesheet" />
-    <title>Project | IchwanArdi</title>
+    <link rel="icon" href="/images/Logo.png" type="image/png" />
+    <link href="/src/output.css" rel="stylesheet" />
+    <title>Picture | IchwanArdi</title>
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,16 +20,16 @@
           <nav id="nav-menu" class="items-center hidden lg:flex">
             <ul class="flex space-x-5">
               <li class="nav relative">
-                <a href="index.html" class="font-semibold text-sm nav-link">HOME</a>
+                <a href="/home" class="font-semibold text-sm nav-link">HOME</a>
               </li>
               <li class="nav relative">
-                <a href="project.html" class="font-semibold text-sm nav-link">PROJECT</a>
+                <a href="/project" class="font-semibold text-sm nav-link">PROJECT</a>
               </li>
               <li class="nav relative">
-                <a href="blog.html" class="font-semibold text-sm nav-link">BLOG</a>
+                <a href="/blog" class="font-semibold text-sm nav-link">BLOG</a>
               </li>
               <li class="nav relative">
-                <a href="picture.html" class="font-semibold text-sm nav-link">PICTURE</a>
+                <a href="/picture" class="font-semibold text-sm nav-link">PICTURE</a>
               </li>
             </ul>
           </nav>
@@ -88,7 +88,7 @@
           </div>
           <!-- logo -->
           <div id="logo" class="flex items-center justify-center w-32 h-20 lg:hidden">
-            <a href="index.html"><img src="../dist/img/logo (1).png" alt="logo" class="w-full h-full object-cover" /></a>
+            <a href="/home"><img src="/images/logo (1).png" alt="logo" class="w-full h-full object-cover" /></a>
           </div>
 
           <!-- toogle -->
@@ -102,13 +102,13 @@
           <nav id="nav" class="flex justify-center mx-auto h-full">
             <ul class="absolute top-20 space-y-5 text-center">
               <li class="nav relative">
-                <a href="project.html" class="font-semibold text-4xl nav-link">PROJECT</a>
+                <a href="/project" class="font-semibold text-4xl nav-link">PROJECT</a>
               </li>
               <li class="nav relative">
-                <a href="blog.html" class="font-semibold text-4xl nav-link">BLOG</a>
+                <a href="/blog" class="font-semibold text-4xl nav-link">BLOG</a>
               </li>
               <li class="nav relative">
-                <a href="picture.html" class="font-semibold text-4xl nav-link">PICTURE</a>
+                <a href="/picture" class="font-semibold text-4xl nav-link">PICTURE</a>
               </li>
             </ul>
             <ul class="flex items-center absolute bottom-1/3 mb-4 space-x-8">
@@ -165,34 +165,61 @@
     </header>
     <!-- Navbar Section End -->
 
-    <!-- jumbotron -->
+    <!-- Jumbotron -->
     <section id="jumbotron">
       <div class="container-fluid">
         <div class="w-full h-auto md:h-80">
-          <img src="../dist/img/4.jpg" alt="Gambar utama halaman" class="w-full h-full object-cover" />
+          <img src="/images/6.jpg" alt="Gambar utama halaman" class="w-full h-full object-cover" />
         </div>
       </div>
     </section>
 
-    <!-- Filter Buttons -->
-    <div class="flex space-x-3 mt-5 px-5 filter">
-      <a href="#" class="nav-link text-white active px-2 font-normal" aria-current="date">All</a> <span class="text-white">|</span> <a href="#" class="nav-link text-white px-2 font-normal" aria-current="date">Website</a>
-      <span class="text-white">|</span> <a href="#" class="nav-link text-white px-2 font-normal" aria-current="date">Game</a> <span class="text-white">|</span>
-      <a href="#" class="nav-link text-white px-2 font-normal" aria-current="date">Nodejs</a>
-    </div>
+    <!-- main picture -->
+    <section id="picture">
+      <div class="mt-10 p-2 grid grid-cols-2 gap-2 md:grid-cols-4 md:p-4">
+        <h2 class="text-xl font-semibold text-slate-700 md:col-start-4 md:row-start-2 md:flex"><span class="self-center text-white">Don't forget to follow my Instagram</span></h2>
+        <div class="text-lg font-bold text-slate-600 md:col-start-2 md:row-start-2 md:flex"><span class="self-end text-white">ichwan_ardi22</span></div>
 
-    <!-- main Blog -->
-    <section id="project">
-      <div class="grid gap-2 mt-5 px-5 min-[375px]:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 daftar-project"></div>
+        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
+          <img src="/images/8.jpg" alt="picture-8" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+        </div>
+        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500 md:col-start-3">
+          <img src="/images/1.jpg" alt="picture-1" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+        </div>
+        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
+          <img src="/images/2.jpg" alt="picture-2" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+        </div>
+        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
+          <img src="/images/3.jpg" alt="picture-3" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+        </div>
+        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
+          <img src="/images/4.jpg" alt="picture-4" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+        </div>
+        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500 md:col-start-2">
+          <img src="/images/5.jpg" alt="picture-5" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+        </div>
+        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500 md:col-start-4">
+          <img src="/images/6.jpg" alt="picture-6" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+        </div>
+        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
+          <img src="/images/7.jpg" alt="picture-7" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+        </div>
+        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500 md:col-start-3">
+          <img src="/images/8.jpg" alt="picture-8" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+        </div>
+        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500 md:col-start-3">
+          <img src="/images/9.jpg" alt="picture-9" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-10 flex justify-center">
-      <div class="text-lg font-semibold text-white">Ⓒ 2025 Ichwan</div>
-    </footer>
+    <section id="footer">
+      <div class="container-fluid py-10 flex justify-center">
+        <div class="text-lg font-semibold text-white">Ⓒ 2025 Ichwan</div>
+      </div>
+    </section>
 
-    <script src="../src/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="../src/project.js"></script>
+    <script src="/src/script.js"></script>
   </body>
 </html>

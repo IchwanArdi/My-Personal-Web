@@ -1,11 +1,3 @@
-// const hamburger = document.querySelector('#hamburger');
-// const navSlide = document.querySelector('#nav-slide');
-
-// hamburger.addEventListener('click', function () {
-//   hamburger.classList.toggle('hamburger-active');
-//   navSlide.classList.toggle('hidden');
-// });
-
 const hamburger = document.querySelector('#hamburger');
 const navSlide = document.querySelector('#nav-slide');
 
