@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
+//XiE0LoF2Hlxb3tts
 
-// Koneksi ke MongoDB Atlas
+const uri = 'mongodb+srv://ichwanpwt22:mongodb@my-personal-db.13xev.mongodb.net/portfolio-db?retryWrites=true&w=majority&appName=My-Personal-Db';
+
 mongoose
-  .connect('mongodb://127.0.0.1:27017/portfolio-db')
-  .then(() => console.log('MongoDB Connected ✅'))
+  .connect(uri)
+  .then(() => console.log('MongoDB Atlas Connected ✅'))
   .catch((err) => console.error('MongoDB Connection Error ❌:', err));
 
 // Schema dan Model (Project)
