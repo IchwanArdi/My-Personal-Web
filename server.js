@@ -12,6 +12,8 @@ app.use('/images', express.static(__dirname + '/dist/img'));
 app.use('/src', express.static(__dirname + '/src'));
 app.use('/data', express.static(__dirname + '/data'));
 
+const { Project, Images } = require('./utils/db');
+
 // Root route - redirect ke home
 app.get('/', (req, res) => {
   res.redirect('/home');
@@ -31,8 +33,13 @@ app.get('/blog', (req, res) => {
   res.render('blog');
 });
 
-app.get('/picture', (req, res) => {
-  res.render('picture');
+app.get('/picture', async (req, res) => {
+  try {
+    const images = await Images.find();
+    res.render('picture', { images });
+  } catch (error) {
+    res.status(500).send('Terjadi kesalahan pada server');
+  }
 });
 
 // Memuat data proyek secara dinamis setiap kali halaman diakses
