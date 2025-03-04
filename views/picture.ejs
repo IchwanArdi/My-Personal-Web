@@ -177,39 +177,18 @@
     <!-- main picture -->
     <section id="picture">
       <div class="mt-10 p-2 grid grid-cols-2 gap-2 md:grid-cols-4 md:p-4">
-        <h2 class="text-xl font-semibold text-slate-700 md:col-start-4 md:row-start-2 md:flex"><span class="self-center text-white">Don't forget to follow my Instagram</span></h2>
-        <div class="text-lg font-bold text-slate-600 md:col-start-2 md:row-start-2 md:flex"><span class="self-end text-white">ichwan_ardi22</span></div>
+        <h2 class="text-xl font-semibold text-slate-700 md:col-start-4 md:row-start-2 md:flex">
+          <span class="self-center text-white">Don't forget to follow my Instagram</span>
+        </h2>
+        <div class="text-lg font-bold text-slate-600 md:col-start-2 md:row-start-2 md:flex">
+          <span class="self-end text-white">ichwan_ardi22</span>
+        </div>
 
+        <% images.forEach(image => { %>
         <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
-          <img src="/images/8.jpg" alt="picture-8" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
+          <img src="<%= image.gambar %>" alt="picture" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
         </div>
-        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500 md:col-start-3">
-          <img src="/images/1.jpg" alt="picture-1" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
-        </div>
-        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
-          <img src="/images/2.jpg" alt="picture-2" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
-        </div>
-        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
-          <img src="/images/3.jpg" alt="picture-3" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
-        </div>
-        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
-          <img src="/images/4.jpg" alt="picture-4" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
-        </div>
-        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500 md:col-start-2">
-          <img src="/images/5.jpg" alt="picture-5" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
-        </div>
-        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500 md:col-start-4">
-          <img src="/images/6.jpg" alt="picture-6" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
-        </div>
-        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500">
-          <img src="/images/7.jpg" alt="picture-7" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
-        </div>
-        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500 md:col-start-3">
-          <img src="/images/8.jpg" alt="picture-8" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
-        </div>
-        <div class="aspect-[4/3] rounded-lg md:aspect-[3/4] xl:aspect-[4/3] overflow-hidden group relative hover:scale-95 transition-all duration-500 md:col-start-3">
-          <img src="/images/9.jpg" alt="picture-9" class="w-full h-full bg-cover bg-center absolute group-hover:scale-125 transition-all duration-500" />
-        </div>
+        <% }); %>
       </div>
     </section>
 
