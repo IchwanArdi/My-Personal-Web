@@ -176,20 +176,55 @@
 
     <!-- Filter Buttons -->
     <div class="flex space-x-3 mt-5 px-5 filter">
-      <a href="#" class="nav-link text-white active px-2 font-normal" aria-current="date">All</a> <span class="text-white">|</span> <a href="#" class="nav-link text-white px-2 font-normal" aria-current="date">Website</a>
-      <span class="text-white">|</span> <a href="#" class="nav-link text-white px-2 font-normal" aria-current="date">Game</a> <span class="text-white">|</span>
-      <a href="#" class="nav-link text-white px-2 font-normal" aria-current="date">Nodejs</a>
+      <a href="#" class="nav-link text-white active px-2 font-normal" onclick="filterProjects('all')">All</a>
+      <span class="text-white">|</span>
+      <a href="#" class="nav-link text-white px-2 font-normal" onclick="filterProjects('website')">Website</a>
+      <span class="text-white">|</span>
+      <a href="#" class="nav-link text-white px-2 font-normal" onclick="filterProjects('game')">Game</a>
+      <span class="text-white">|</span>
+      <a href="#" class="nav-link text-white px-2 font-normal" onclick="filterProjects('nodejs')">Nodejs</a>
     </div>
 
     <!-- main Blog -->
     <section id="project">
-      <div class="grid gap-2 mt-5 px-5 min-[375px]:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 daftar-project"></div>
+      <div class="grid gap-2 mt-5 px-5 min-[375px]:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 daftar-project">
+        <% projects.forEach(data => { %>
+        <div class="aspect-[4/3] rounded-lg mt-5 px-3">
+          <a href="<%= data.link %>" target="_blank">
+            <img src="<%= data.gambar %>" alt="picture-8" class="bg-center" />
+          </a>
+          <div class="text-white judul-project">
+            <span class="text-sm md:text-xs"><%= data.tanggal.toISOString().split('T')[0] %></span>
+            <p class="font-semibold 2xl:text-xl lg:text-base md:text-sm"><%= data.deskripsi %></p>
+          </div>
+        </div>
+        <% }); %>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="py-10 flex justify-center">
       <div class="text-lg font-semibold text-white">Ⓒ 2025 Ichwan</div>
     </footer>
+
+    <script>
+      function filterProjects(category) {
+        fetch(`/project?category=${category}`)
+          .then((response) => response.text())
+          .then((html) => {
+            document.querySelector('#project').innerHTML = new DOMParser().parseFromString(html, 'text/html').querySelector('#project').innerHTML;
+          })
+          .catch((error) => console.error('Error:', error));
+      }
+
+      // program untuk kategori filter
+      document.querySelectorAll('.nav-link').forEach((link) => {
+        link.addEventListener('click', function () {
+          document.querySelector('.nav-link.active')?.classList.remove('active');
+          this.classList.add('active');
+        });
+      });
+    </script>
 
     <script src="/src/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

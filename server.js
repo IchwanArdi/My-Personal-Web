@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const port = 3000;
 
 // Middleware untuk menangani form dan file statis
@@ -11,6 +12,7 @@ app.use('/images', express.static(__dirname + '/dist/picture'));
 app.use('/images', express.static(__dirname + '/dist/img'));
 app.use('/src', express.static(__dirname + '/src'));
 app.use('/data', express.static(__dirname + '/data'));
+app.use(cors()); // Mengizinkan akses dari frontend
 
 const { Project, Images } = require('./utils/db');
 
@@ -42,9 +44,21 @@ app.get('/picture', async (req, res) => {
   }
 });
 
-// Memuat data proyek secara dinamis setiap kali halaman diakses
-app.get('/project', (req, res) => {
-  res.render('project');
+app.get('/project', async (req, res) => {
+  try {
+    const { category } = req.query;
+    let projects;
+
+    if (category && category !== 'all') {
+      projects = await Project.find({ kategori: category });
+    } else {
+      projects = await Project.find();
+    }
+
+    res.render('project', { projects });
+  } catch (error) {
+    res.status(500).send('Terjadi kesalahan pada server');
+  }
 });
 
 app.listen(port, () => {

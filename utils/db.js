@@ -10,7 +10,8 @@ mongoose
 
 // Schema dan Model (Project)
 const projectSchema = new mongoose.Schema({
-  judul: String,
+  kategori: String,
+  link: String,
   deskripsi: String,
   tanggal: Date,
   gambar: String,
@@ -26,12 +27,16 @@ const gambarSchema = new mongoose.Schema({
 const Images = mongoose.model('Images', gambarSchema);
 
 // Tambahkan data baru ke database
-// const gambar1 = new Images({
-//   gambar: 'https://res.cloudinary.com/dxagnxs59/image/upload/v1741118696/4_pv1ssj.jpg',
+// const project1 = new Project({
+//   kategori: 'website',
+//   link: 'https://my-blog-website-jet.vercel.app/',
+//   deskripsi: 'Website Blog dengan Bootstrap 5',
+//   tanggal: new Date('2024-10-21'), // Format tanggal yang benar
+//   gambar: 'https://res.cloudinary.com/dxagnxs59/image/upload/v1741042728/blog_aai7me.png',
 // });
 
 // // Simpan data ke database
-// gambar1
+// project1
 //   .save()
 //   .then((result) => {
 //     console.log('Project berhasil disimpan:', result);
