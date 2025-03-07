@@ -22,11 +22,13 @@ app.get('/', (req, res) => {
 });
 
 // Route utama
-app.get('/home', (req, res) => {
+app.get('/home', async (req, res) => {
   try {
-    res.render('index');
+    const latestProject = await Project.findOne().sort({ _id: -1 }); // Mengambil proyek terbaru berdasarkan ID terbaru
+    const latestPicture = await Images.findOne().sort({ _id: -1 }); // Mengambil Picture terbaru berdasarkan ID terbaru
+    res.render('index', { latestProject, latestPicture });
   } catch (error) {
-    console.error('Error saat render halaman home:', error);
+    console.error('Error saat mengambil data proyek:', error);
     res.status(500).send('Terjadi kesalahan pada server');
   }
 });
