@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 p-4 text-white flex justify-between items-center">
+      <h1 class="text-xl font-bold">Dashboard</h1>
+      <a href="/logout" class="bg-red-500 px-4 py-2 rounded hover:bg-red-700 transition">Logout</a>
+    </nav>
+
+    <div class="flex">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-white shadow-md h-screen p-5 hidden md:block">
+        <h2 class="text-lg font-semibold mb-4">Menu</h2>
+        <ul>
+          <li class="mb-3">
+            <a href="/home" class="block py-2 px-4 text-gray-600 rounded hover:bg-blue-200">Home</a>
+          </li>
+          <li class="mb-3">
+            <a href="/profile" class="block py-2 px-4 text-gray-600 rounded hover:bg-blue-200">Profile</a>
+          </li>
+          <li class="mb-3">
+            <a href="/settings" class="block py-2 px-4 text-gray-600 rounded hover:bg-blue-200">Settings</a>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Content -->
+      <main class="flex-1 p-6">
+        <h2 class="text-2xl font-bold mb-4">Selamat Datang, <%= typeof user !== 'undefined' ? user.nama : 'Pengguna' %>!</h2>
+
+        <!-- Form Tambah Artikel -->
+        <div class="bg-white p-4 shadow-md rounded mb-6">
+          <h3 class="text-lg font-semibold mb-3">Tambah Artikel</h3>
+          <form action="/artikel/tambah" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label class="block text-gray-700" for="judul">Judul Artikel</label>
+              <input type="text" id="judul" name="judul" class="w-full border p-2 rounded" required />
+            </div>
+            <div class="mb-3">
+              <label class="block text-gray-700" for="konten">Konten</label>
+              <textarea id="konten" name="konten" class="w-full border p-2 rounded" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="block text-gray-700">Gambar</label>
+              <input type="file" name="gambar" class="w-full border p-2 rounded" />
+            </div>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800">Tambah Artikel</button>
+          </form>
+        </div>
+
+        <!-- Daftar Artikel -->
+        <div class="bg-white p-4 shadow-md rounded">
+          <h3 class="text-lg font-semibold mb-3">Daftar Artikel</h3>
+          <table class="w-full border-collapse border">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">Judul</th>
+                <th class="border p-2">Gambar</th>
+                <th class="border p-2">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% blogs.forEach(function(data) { %>
+              <tr>
+                <td class="border p-2"><%= data.judul %></td>
+                <td class="border p-2">
+                  <img src="/uploads/<%= data.gambar %>" alt="<%= data.judul %>" class="w-20 h-20 object-cover" />
+                </td>
+
+                <td class="border p-2">
+                  <a href="/artikel/edit/<%= data._id %>" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-700">Edit</a>
+
+                  <form action="/dashboard/<%= data._id %>?_method=DELETE" method="POST" class="inline">
+                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                  </form>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

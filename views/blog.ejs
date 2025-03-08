@@ -167,51 +167,23 @@
 
     <!-- Blog -->
     <section id="main" class="pt-10 relative">
+      <% blogs.forEach((data, i) => { %>
       <div class="w-full h-auto flex justify-center p-5">
         <div class="flex flex-col md:flex-row w-full max-w-6xl text-white gap-x-8">
           <!-- Gambar -->
           <div class="w-full md:w-1/2">
             <a href="#">
-              <img src="/images/1.jpg" alt="blog" class="w-full h-72 sm:h-48 md:h-72 object-cover" />
+              <img src="/uploads/<%= data.gambar %>" alt="blog" class="w-full h-72 sm:h-48 md:h-72 object-cover" />
             </a>
           </div>
           <!-- Konten -->
           <div class="w-full md:w-1/2 flex flex-col justify-center px-5 min-[375px]:pt-5 md:pt-0">
-            <span class="font-bold text-sm sm:text-xs">19/02/25</span>
-            <p class="py-4 text-2xl sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug">Dolorem, fugit! Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
+            <span class="font-bold text-sm sm:text-xs"><%= data ? data.tanggal.toISOString().split('T')[0] : 'No Date' %></span>
+            <p class="py-4 text-2xl sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug"><%= data.judul %></p>
           </div>
         </div>
       </div>
-      <div class="w-full h-auto flex justify-center p-5">
-        <div class="flex flex-col md:flex-row w-full max-w-6xl text-white gap-x-8">
-          <!-- Gambar -->
-          <div class="w-full md:w-1/2">
-            <a href="#">
-              <img src="/images/4.jpg" alt="blog" class="w-full h-72 sm:h-48 md:h-72 object-cover" />
-            </a>
-          </div>
-          <!-- Konten -->
-          <div class="w-full md:w-1/2 flex flex-col justify-center px-5 min-[375px]:pt-5 md:pt-0">
-            <span class="font-bold text-sm sm:text-xs">19/02/25</span>
-            <p class="py-4 text-2xl sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug">Dolorem, fugit! Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-          </div>
-        </div>
-      </div>
-      <div class="w-full h-auto flex justify-center p-5">
-        <div class="flex flex-col md:flex-row w-full max-w-6xl text-white gap-x-8">
-          <!-- Gambar -->
-          <div class="w-full md:w-1/2">
-            <a href="#">
-              <img src="/images/6.jpg" alt="blog" class="w-full h-72 sm:h-48 md:h-72 object-cover" />
-            </a>
-          </div>
-          <!-- Konten -->
-          <div class="w-full md:w-1/2 flex flex-col justify-center px-5 min-[375px]:pt-5 md:pt-0">
-            <span class="font-bold text-sm sm:text-xs">19/02/25</span>
-            <p class="py-4 text-2xl sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug">Dolorem, fugit! Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-          </div>
-        </div>
-      </div>
+      <% }) %>
     </section>
 
     <!-- Footer -->

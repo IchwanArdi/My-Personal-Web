@@ -26,13 +26,29 @@ const gambarSchema = new mongoose.Schema({
 
 const Images = mongoose.model('Images', gambarSchema);
 
+// Schema dan Model (Login)
+const loginSchema = new mongoose.Schema({
+  nama: String,
+  password: String,
+});
+const Login = mongoose.model('Login', loginSchema);
+
+// Schema dan Model (Blog)
+const blogSchema = new mongoose.Schema({
+  kategori: { type: String },
+  judul: { type: String, required: true },
+  konten: { type: String, required: true },
+  gambar: { type: String }, // Bisa berupa URL gambar atau path file
+  tanggal: { type: Date, default: Date.now },
+});
+
+const Blog = mongoose.model('Blog', blogSchema);
+
 // Tambahkan data baru ke database
-// const project1 = new Project({
-//   kategori: 'website',
-//   link: 'https://my-blog-website-jet.vercel.app/',
-//   deskripsi: 'Website Blog dengan Bootstrap 5',
-//   tanggal: new Date('2024-10-21'), // Format tanggal yang benar
-//   gambar: 'https://res.cloudinary.com/dxagnxs59/image/upload/v1741042728/blog_aai7me.png',
+// const project1 = new Blog({
+//   judul: 'Membuat Website menggunakan Tailwind',
+//   konten: 'Dolorem, fugit! Lorem ipsum, dolor sit amet consectetur adipisicing.',
+//   tanggal: '2024-08-08T00:00:00.000+00:00',
 // });
 
 // // Simpan data ke database
@@ -46,4 +62,4 @@ const Images = mongoose.model('Images', gambarSchema);
 //     console.error('Gagal menyimpan project ❌:', err);
 //   });
 
-module.exports = { Project, Images };
+module.exports = { Project, Images, Login, Blog };
