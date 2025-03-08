@@ -25,7 +25,7 @@ app.use('/images', express.static(__dirname + '/dist/picture'));
 app.use('/images', express.static(__dirname + '/dist/img'));
 app.use('/src', express.static(__dirname + '/src'));
 app.use('/data', express.static(__dirname + '/data'));
-app.use('/uploads', express.static(__dirname + 'uploads'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(cors()); // Mengizinkan akses dari frontend
 app.use(methodOverride('_method'));
 
@@ -68,8 +68,9 @@ app.get('/', (req, res) => {
 app.get('/home', async (req, res) => {
   try {
     const latestProject = await Project.findOne().sort({ _id: -1 }); // Mengambil proyek terbaru berdasarkan ID terbaru
+    const latestBlog = await Blog.findOne().sort({ _id: -1 }); // Mengambil Picture terbaru berdasarkan ID terbaru
     const latestPicture = await Images.findOne().sort({ _id: -1 }); // Mengambil Picture terbaru berdasarkan ID terbaru
-    res.render('index', { latestProject, latestPicture });
+    res.render('index', { latestProject, latestBlog, latestPicture });
   } catch (error) {
     console.error('Error saat mengambil data proyek:', error);
     res.status(500).send('Terjadi kesalahan pada server');
@@ -78,7 +79,7 @@ app.get('/home', async (req, res) => {
 
 app.get('/blog', async (req, res) => {
   try {
-    const blogs = await Blog.find();
+    const blogs = await Blog.find().sort({ tanggal: -1 });
     res.render('blog', { blogs });
   } catch (error) {
     res.status(500).send('Terjadi kesalahan pada server');
@@ -89,6 +90,19 @@ app.get('/picture', async (req, res) => {
   try {
     const images = await Images.find();
     res.render('picture', { images });
+  } catch (error) {
+    res.status(500).send('Terjadi kesalahan pada server');
+  }
+});
+
+app.get('/mainBlog/:judul', async (req, res) => {
+  try {
+    const mainBlog = await Blog.findOne({ judul: req.params.judul });
+
+    if (!mainBlog) {
+      return res.status(404).send('Blog tidak ditemukan');
+    }
+    res.render('mainBlog', { mainBlog });
   } catch (error) {
     res.status(500).send('Terjadi kesalahan pada server');
   }
