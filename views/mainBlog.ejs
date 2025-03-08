@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/Logo.png" type="image/png" />
     <link href="/src/output.css" rel="stylesheet" />
-    <!-- AOS ANIMATE -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <title>Home | IchwanArdi</title>
+    <title>Blog | IchwanArdi</title>
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -167,56 +165,24 @@
     </header>
     <!-- Navbar Section End -->
 
-    <!-- Main Section -->
-    <section id="main" class="pt-10 relative">
-      <div class="container mx-auto space-y-4 sm:space-y-16">
-        <!-- Loop Project -->
-        <div class="relative w-full h-96 flex items-center justify-center" data-aos="fade-up" data-aos-duration="500">
-          <img src="<%= latestProject ? latestProject.gambar : '/images/default.png' %>" alt="Project Image" class="w-full h-full object-cover opacity-50 blur-sm" />
-          <div class="absolute flex flex-col md:flex-row justify-center w-full text-white gap-x-8">
-            <div class="w-full md:w-1/2 px-5">
-              <a href="<%= latestProject ? latestProject.link : '#' %>">
-                <img src="<%= latestProject ? latestProject.gambar : '/images/default.png' %>" alt="project-1" class="w-full h-44 sm:h-48 md:h-72 object-cover rounded-lg shadow-lg" />
-              </a>
+    <!-- Main Blog -->
+    <section id="mainBlog">
+      <div class="container pt-5 md:pt-10 mx-auto px-5 text-white">
+        <div class="grid grid-cols-1 md:grid-cols-6 justify-center">
+          <div class="mainSection md:col-span-4 md:col-start-2">
+            <div class="date p-5">
+              <span class="text-sm"> <%= new Date(mainBlog.tanggal).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }) %> - Write By Ichwan </span>
             </div>
-            <!-- Project Info -->
-            <div class="w-full md:w-1/2 flex flex-col justify-center px-5 mt-3 sm:mt-0">
-              <span class="font-bold text-sm sm:text-xs"><%= latestProject ? latestProject.tanggal.toISOString().split('T')[0] : 'No Date' %></span>
-              <span class="sm:text-sm">Latest Project</span>
-              <p class="py-4 text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug"><%= latestProject ? latestProject.deskripsi : 'Belum ada proyek terbaru' %></p>
+            <div class="judul px-5">
+              <h1 class="text-4xl md:text-6xl font-bold"><%= mainBlog.judul %></h1>
             </div>
-          </div>
-        </div>
-
-        <!-- 2 -->
-        <div class="relative w-full h-96 flex items-center justify-center" data-aos="fade-up" data-aos-duration="1000">
-          <img src="<%= latestBlog ? '/uploads/' + latestBlog.gambar : '/images/default.png' %>" alt="Project Image" class="w-full h-full object-cover opacity-50 blur-sm" />
-          <div class="absolute flex flex-col md:flex-row justify-center w-full text-white gap-x-8">
-            <div class="w-full md:w-1/2 px-5">
-              <a href="#">
-                <img src="<%= latestBlog ? '/uploads/' + latestBlog.gambar : '/images/default.png' %>" alt="project-1" class="w-full h-44 sm:h-48 md:h-72 object-cover rounded-lg shadow-lg" />
-              </a>
+            <div class="gambar py-10 px-5">
+              <img src="/uploads/<%= mainBlog.gambar %>" alt="Blog Image - <%= mainBlog.judul %>" class="w-full max-h-[400px] object-cover" />
             </div>
-            <!-- Project Info -->
-            <div class="w-full md:w-1/2 flex flex-col justify-center px-5 mt-3 sm:mt-0">
-              <span class="font-bold text-sm sm:text-xs"><%= latestBlog ? latestBlog.tanggal.toISOString().split('T')[0] : 'No Date' %></span>
-              <span class="sm:text-sm">Latest Blog</span>
-              <p class="py-4 text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug"><%= latestBlog ? latestBlog.judul : 'Belum ada proyek terbaru' %></p>
-            </div>
-          </div>
-        </div>
-        <!-- 3 -->
-        <div class="relative w-full h-96 flex items-center justify-center" data-aos="fade-up" data-aos-duration="500">
-          <img src="<%= latestPicture ? latestPicture.gambar : "/images/8.jpg"%>" alt="Project Image" class="w-full h-full object-cover opacity-50 blur-sm" />
-          <div class="absolute flex flex-col md:flex-row justify-center w-full text-white gap-x-8">
-            <div class="w-full md:w-1/2 px-5">
-              <a href="/picture"> <img src="<%= latestPicture ? latestPicture.gambar : "/images/8.jpg"%>" alt="project-1" class="w-full h-44 sm:h-48 md:h-72 object-cover rounded-lg shadow-lg" /> </a>
-            </div>
-            <!-- Project Info -->
-            <div class="w-full md:w-1/2 flex flex-col justify-center px-5 mt-3 sm:mt-0">
-              <span class="font-bold text-sm sm:text-xs">2/26/25</span>
-              <span class="sm:text-sm">Latest Picture</span>
-              <p class="py-4 text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, fugit!</p>
+            <div class="artikel md:py-5 px-5 text-justify">
+              <p class="md:font-medium"><%- mainBlog.konten %></p>
+              <hr class="mt-2" />
+              <p>Terima kasih telah membaca!</p>
             </div>
           </div>
         </div>
@@ -230,14 +196,6 @@
       </div>
     </section>
 
-    <script src="/src/script.js"></script>
-
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        once: true,
-      });
-    </script>
+    <script src="src/script.js"></script>
   </body>
 </html>
