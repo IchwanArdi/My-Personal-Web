@@ -25,7 +25,7 @@ app.use('/images', express.static(__dirname + '/dist/picture'));
 app.use('/images', express.static(__dirname + '/dist/img'));
 app.use('/src', express.static(__dirname + '/src'));
 app.use('/data', express.static(__dirname + '/data'));
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(__dirname + 'uploads'));
 app.use(cors()); // Mengizinkan akses dari frontend
 app.use(methodOverride('_method'));
 
