@@ -16,7 +16,7 @@ body {
 }
 
 #picture {
-  font-family: 'Grechen Fuemen', serif;
+  font-family: 'Grechen Fuemen', serif !important;
   font-weight: 600;
   font-style: normal;
 }
