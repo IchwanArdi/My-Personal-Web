@@ -7,11 +7,17 @@
     <link href="/src/output.css" rel="stylesheet" />
     <!-- AOS ANIMATE -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <title>Home | IchwanArdi</title>
+    <title>Ichwan Ardianto | Software Developer & IT Enthusiast</title>
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Noto+Sans+Hanunoo&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+    <style>
+      body {
+        font-family: 'Work Sans', sans-serif;
+      }
+    </style>
   </head>
   <body class="bg-slate-950">
     <!-- Navbar Section Start -->
@@ -95,7 +101,7 @@
 
           <!-- toogle -->
           <div id="hamburger" class="flex flex-col items-center mt-6 space-y-2 cursor-pointer ml-auto lg:hidden">
-            <span class="hamburger-line transition duration-300 ease-in-out"></span>
+            <span class="hamburger-line transition duration-500 ease-in-out"></span>
             <span class="hamburger-line transition duration-300 ease-in-out"></span>
           </div>
         </div>
@@ -181,9 +187,9 @@
             </div>
             <!-- Project Info -->
             <div class="w-full md:w-1/2 flex flex-col justify-center px-5 mt-3 sm:mt-0">
-              <span class="font-bold text-sm sm:text-xs"><%= latestProject ? latestProject.tanggal.toISOString().split('T')[0] : 'No Date' %></span>
-              <span class="sm:text-sm">Latest Project</span>
-              <p class="py-4 text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug"><%= latestProject ? latestProject.deskripsi : 'Belum ada proyek terbaru' %></p>
+              <span class="sm:text-sm mb-5 px-2 font-bold bg-amber-500 text-slate-950 italic" style="width: fit-content">Latest Project</span>
+              <span class="font-bold text-md"><%= latestProject ? latestProject.tanggal.toISOString().split('T')[0] : 'No Date' %></span>
+              <p class="py-2 text-2xl sm:text-lg md:text-xl lg:text-5xl font-bold leading-snug"><%= latestProject ? latestProject.deskripsi : 'Belum ada proyek terbaru' %></p>
             </div>
           </div>
         </div>
@@ -199,9 +205,9 @@
             </div>
             <!-- Project Info -->
             <div class="w-full md:w-1/2 flex flex-col justify-center px-5 mt-3 sm:mt-0">
-              <span class="font-bold text-sm sm:text-xs"><%= latestBlog ? latestBlog.tanggal.toISOString().split('T')[0] : 'No Date' %></span>
-              <span class="sm:text-sm">Latest Blog</span>
-              <p class="py-4 text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug"><%= latestBlog ? latestBlog.judul : 'Belum ada proyek terbaru' %></p>
+              <span class="sm:text-sm mb-5 px-2 font-bold bg-amber-500 text-slate-950 italic" style="width: fit-content">Latest Blog</span>
+              <span class="font-bold text-md"><%= latestBlog ? latestBlog.tanggal.toISOString().split('T')[0] : 'No Date' %></span>
+              <p class="py-2 text-2xl sm:text-lg md:text-xl lg:text-5xl font-bold leading-snug"><%= latestBlog ? latestBlog.judul : 'Belum ada proyek terbaru' %></p>
             </div>
           </div>
         </div>
@@ -214,9 +220,9 @@
             </div>
             <!-- Project Info -->
             <div class="w-full md:w-1/2 flex flex-col justify-center px-5 mt-3 sm:mt-0">
-              <span class="font-bold text-sm sm:text-xs">2/26/25</span>
-              <span class="sm:text-sm">Latest Picture</span>
-              <p class="py-4 text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-snug">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, fugit!</p>
+              <span class="sm:text-sm mb-5 px-2 font-bold bg-amber-500 text-slate-950 italic" style="width: fit-content">Latest Picture</span>
+              <span class="font-bold text-md">2/26/25</span>
+              <p class="py-2 text-2xl sm:text-lg md:text-xl lg:text-5xl font-bold leading-snug">Lorem dolor consectetur adipisicing elit. Dolorem, fugit!</p>
             </div>
           </div>
         </div>

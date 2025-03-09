@@ -68,7 +68,7 @@ app.get('/', (req, res) => {
 app.get('/home', async (req, res) => {
   try {
     const latestProject = await Project.findOne().sort({ _id: -1 }); // Mengambil proyek terbaru berdasarkan ID terbaru
-    const latestBlog = await Blog.findOne().sort({ _id: -1 }); // Mengambil Picture terbaru berdasarkan ID terbaru
+    const latestBlog = await Blog.findOne().sort({ _id: -1 }); // Mengambil Blog terbaru berdasarkan ID terbaru
     const latestPicture = await Images.findOne().sort({ _id: -1 }); // Mengambil Picture terbaru berdasarkan ID terbaru
     res.render('index', { latestProject, latestBlog, latestPicture });
   } catch (error) {
@@ -114,7 +114,7 @@ app.get('/project', async (req, res) => {
     let projects;
 
     if (category && category !== 'all') {
-      projects = await Project.find({ kategori: category });
+      projects = await Project.find({ kategori: category }).sort({ tanggal: -1 });
     } else {
       projects = await Project.find();
     }
