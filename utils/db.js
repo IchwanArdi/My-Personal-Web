@@ -13,7 +13,7 @@ const projectSchema = new mongoose.Schema({
   kategori: String,
   link: String,
   deskripsi: String,
-  tanggal: Date,
+  tanggal: { type: Date, default: Date.now },
   gambar: String,
 });
 

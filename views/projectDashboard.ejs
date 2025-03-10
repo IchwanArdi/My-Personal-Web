@@ -1,0 +1,110 @@
+      <!-- layout header -->
+      <%- include('layouts/header') %>
+      <!-- layout nav -->
+      <%- include('layouts/nav') %>
+      <!-- Content -->
+      <main class="flex-1 p-6">
+        <h2 class="text-2xl font-bold mb-4">Selamat Datang, <%= typeof user !== 'undefined' ? user.nama : 'Pengguna' %>!</h2>
+
+        <!-- Form Tambah Artikel -->
+        <div class="bg-white p-4 shadow-md rounded mb-6">
+          <h3 class="text-lg font-semibold mb-3">Tambah Project</h3>
+          <form id="formProject" action="/project/tambah" method="POST">
+            <input type="hidden" id="projectId" name="_id" />
+            <div class="mb-3">
+              <label class="block text-gray-700" for="deskripsi">Deskripsi Project</label>
+              <input type="text" id="deskripsi" name="deskripsi" class="w-full border p-2 rounded" required />
+            </div>
+            <div class="mb-3">
+              <label class="block text-gray-700" for="kategori">Kategori</label>
+              <input type="text" id="kategori" name="kategori" class="w-full border p-2 rounded" required />
+            </div>
+            <div class="mb-3">
+              <label class="block text-gray-700" for="link">Link</label>
+              <input type="text" id="link" name="link" class="w-full border p-2 rounded" required />
+            </div>
+            <div class="mb-3">
+              <label class="block text-gray-700">Link Gambar</label>
+              <input type="text" id="gambar" name="gambar" class="w-full border p-2 rounded" />
+            </div>
+            <button type="submit" id="submitButton" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800">Tambah Project</button>
+          </form>
+          
+        </div>
+
+        <!-- Daftar Artikel -->
+        <div class="bg-white p-4 shadow-md rounded">
+          <h3 class="text-lg font-semibold mb-3">Daftar Artikel</h3>
+          <table class="w-full border-collapse border">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">Deskripsi</th>
+                <th class="border p-2">Kategori</th>
+                <th class="border p-2">Gambar</th>
+                <th class="border p-2">link</th>
+                <th class="border p-2">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% projects.forEach(function(data) { %>
+              <tr>
+                <td class="border p-2"><%= data.deskripsi %></td>
+                <td class="border p-2"><%= data.kategori %></td>
+                <td class="border p-5">
+                  <img src="<%= data.gambar %>" alt="<%= data.deskripsi %>" class="w-20 h-20 object-cover" />
+                </td>
+                <td class="border p-2"><%= data.link %></td>
+
+                <td class="border p-2">
+                  <a href="#" 
+                  class="edit-btn bg-yellow-500 text-white px-3 py-1 m-1 rounded hover:bg-yellow-700" 
+                  data-id="<%= data._id %>"
+                  data-deskripsi="<%= data.deskripsi %>"
+                  data-kategori="<%= data.kategori %>"
+                  data-link="<%= data.link %>"
+                  data-gambar="<%= data.gambar %>">
+                  Edit
+                </a>
+                  <form action="/projectDashboard/<%= data._id %>?_method=DELETE" method="POST" class="inline">
+                    <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                  </form>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </body>
+
+  <script>
+    document.querySelectorAll(".edit-btn").forEach((button) => {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+    
+        let id = this.dataset.id; // Ambil ID dari atribut data-id
+        let deskripsi = this.dataset.deskripsi;
+        let kategori = this.dataset.kategori;
+        let link = this.dataset.link;
+        let gambar = this.dataset.gambar;
+    
+        document.getElementById("projectId").value = id;
+        document.getElementById("deskripsi").value = deskripsi;
+        document.getElementById("kategori").value = kategori;
+        document.getElementById("link").value = link;
+        document.getElementById("gambar").value = gambar;
+    
+        let formProject = document.getElementById("formProject");
+        formProject.action = "/project?_method=PUT";
+        
+        let submitButton = document.getElementById("submitButton");
+        submitButton.textContent = "Update Project";
+        submitButton.classList.remove("bg-blue-600");
+        submitButton.classList.add("bg-yellow-500");
+      });
+    });    
+  </script>
+  
+
+</html>

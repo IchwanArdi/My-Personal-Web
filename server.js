@@ -147,16 +147,18 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// Tampilkan data Blog
 app.get('/dashboard', authMiddleware, async (req, res) => {
   try {
     const blogs = await Blog.find(); // Ambil data dari database
-    res.render('dashboard', { blogs }); // Kirim ke template
+    res.render('dashboard', { blogs, title: 'Dashboard Blogs' }); // Kirim ke template
   } catch (error) {
     res.status(500).send('Terjadi kesalahan pada server');
     console.log(error);
   }
 });
 
+// Tambah Blog
 app.post('/artikel/tambah', authMiddleware, upload.single('gambar'), async (req, res) => {
   try {
     const newArticle = {
@@ -173,6 +175,7 @@ app.post('/artikel/tambah', authMiddleware, upload.single('gambar'), async (req,
   }
 });
 
+// Delete Blog
 app.delete('/dashboard/:id', authMiddleware, async (req, res) => {
   try {
     await Blog.deleteOne({ _id: req.params.id });
@@ -183,20 +186,95 @@ app.delete('/dashboard/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// app.post('/artikel/edit/:id', authMiddleware, async (req, res) => {
-//   try {
-//     const { kategori, judul, deskripsi, gambar } = req.body;
-//     await Artikel.findByIdAndUpdate(req.params.id, { kategori, judul, deskripsi, gambar });
-//     res.redirect('/dashboard');
-//   } catch (error) {
-//     res.status(500).send('Gagal mengedit artikel');
-//   }
-// });
+// Edit Project
+app.put('/blog', authMiddleware, upload.single('gambar'), async (req, res) => {
+  try {
+    // Ambil data blog lama dari database
+    const blog = await Blog.findById(req.body._id);
+    if (!blog) {
+      return res.status(404).send('Blog tidak ditemukan');
+    }
+
+    // Tentukan apakah gambar baru diunggah atau tidak
+    const updatedData = {
+      judul: req.body.judul,
+      konten: req.body.konten,
+      gambar: req.file ? req.file.filename : blog.gambar, // Pakai gambar lama jika tidak ada gambar baru
+    };
+
+    // Update blog
+    await Blog.findByIdAndUpdate(req.body._id, updatedData, { new: true });
+
+    res.redirect('/dashboard');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+});
+
+// Tampilkan data Project
+app.get('/projectDashboard', authMiddleware, async (req, res) => {
+  try {
+    const projects = await Project.find();
+    res.render('projectDashboard', { projects, title: 'Dashboard Project' }); // Kirim ke template
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Tambah Project
+app.post('/project/tambah', authMiddleware, async (req, res) => {
+  try {
+    const newProject = {
+      deskripsi: req.body.deskripsi,
+      kategori: req.body.kategori,
+      link: req.body.link,
+      gambar: req.body.gambar,
+    };
+
+    await Project.create(newProject);
+    res.redirect('/projectDashboard');
+  } catch (error) {
+    res.status(500).send('Terjadi kesalahan pada server.');
+    console.log(error);
+  }
+});
+
+// Delete Project
+app.delete('/projectDashboard/:id', authMiddleware, async (req, res) => {
+  try {
+    await Project.deleteOne({ _id: req.params.id });
+    res.redirect('/projectDashboard');
+  } catch (error) {
+    res.status(500).send('Gagal menghapus artikel');
+    console.log(error);
+  }
+});
+
+// Edit Project
+app.put('/project', authMiddleware, async (req, res) => {
+  try {
+    await Project.findByIdAndUpdate(req.body._id, {
+      deskripsi: req.body.deskripsi,
+      kategori: req.body.kategori,
+      link: req.body.link,
+      gambar: req.body.gambar,
+    });
+
+    res.redirect('/projectDashboard');
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
+});
 
 app.get('/logout', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/login'); // Kembali ke halaman login setelah logout
   });
+});
+
+app.use((req, res) => {
+  res.status(404).render('404');
 });
 
 app.listen(port, () => {
