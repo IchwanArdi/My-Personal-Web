@@ -97,7 +97,7 @@ app.get('/picture', async (req, res) => {
 
 app.get('/mainBlog/:judul', async (req, res) => {
   try {
-    const mainBlog = await Blog.findOne({ judul: req.params.judul });
+    const mainBlog = await Blog.findOne({ judul: decodeURIComponent(req.params.judul) });
 
     if (!mainBlog) {
       return res.status(404).send('Blog tidak ditemukan');
@@ -151,7 +151,9 @@ app.post('/login', async (req, res) => {
 app.get('/dashboard', authMiddleware, async (req, res) => {
   try {
     const blogs = await Blog.find(); // Ambil data dari database
-    res.render('dashboard', { blogs, title: 'Dashboard Blogs' }); // Kirim ke template
+    const successMessage = req.query.success || null; // Ambil pesan sukses dari query
+
+    res.render('dashboard', { blogs, title: 'Dashboard Blog', success: successMessage });
   } catch (error) {
     res.status(500).send('Terjadi kesalahan pada server');
     console.log(error);
@@ -168,7 +170,7 @@ app.post('/artikel/tambah', authMiddleware, upload.single('gambar'), async (req,
     };
 
     await Blog.create(newArticle);
-    res.redirect('/dashboard');
+    res.redirect('/dashboard?success="Blog berhasil ditambah');
   } catch (error) {
     res.status(500).send('Terjadi kesalahan pada server.');
     console.log(error);
@@ -179,7 +181,7 @@ app.post('/artikel/tambah', authMiddleware, upload.single('gambar'), async (req,
 app.delete('/dashboard/:id', authMiddleware, async (req, res) => {
   try {
     await Blog.deleteOne({ _id: req.params.id });
-    res.redirect('/dashboard');
+    res.redirect('/dashboard?success="Blog berhasil dihapus');
   } catch (error) {
     res.status(500).send('Gagal menghapus artikel');
     console.log(error);
@@ -187,25 +189,22 @@ app.delete('/dashboard/:id', authMiddleware, async (req, res) => {
 });
 
 // Edit Project
-app.put('/blog', authMiddleware, upload.single('gambar'), async (req, res) => {
+app.put('/artikel/:id', authMiddleware, upload.single('gambar'), async (req, res) => {
   try {
-    // Ambil data blog lama dari database
-    const blog = await Blog.findById(req.body._id);
+    const blog = await Blog.findById(req.params.id);
     if (!blog) {
       return res.status(404).send('Blog tidak ditemukan');
     }
 
-    // Tentukan apakah gambar baru diunggah atau tidak
     const updatedData = {
       judul: req.body.judul,
       konten: req.body.konten,
-      gambar: req.file ? req.file.filename : blog.gambar, // Pakai gambar lama jika tidak ada gambar baru
+      gambar: req.file ? req.file.filename : blog.gambar,
     };
 
-    // Update blog
-    await Blog.findByIdAndUpdate(req.body._id, updatedData, { new: true });
+    await Blog.findByIdAndUpdate(req.params.id, updatedData, { new: true });
 
-    res.redirect('/dashboard');
+    res.redirect('/dashboard?success=Blog berhasil diedit');
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
@@ -216,7 +215,9 @@ app.put('/blog', authMiddleware, upload.single('gambar'), async (req, res) => {
 app.get('/projectDashboard', authMiddleware, async (req, res) => {
   try {
     const projects = await Project.find();
-    res.render('projectDashboard', { projects, title: 'Dashboard Project' }); // Kirim ke template
+    const successMessage = req.query.success || null; // Ambil pesan sukses dari query
+
+    res.render('projectDashboard', { projects, title: 'Dashboard Project', success: successMessage });
   } catch (error) {
     console.log(error);
   }
@@ -233,7 +234,11 @@ app.post('/project/tambah', authMiddleware, async (req, res) => {
     };
 
     await Project.create(newProject);
-    res.redirect('/projectDashboard');
+
+    // Ambil ulang data proyek setelah menambahkan proyek baru
+    const projects = await Project.find();
+
+    res.redirect('/projectDashboard?success=Project berhasil ditambah');
   } catch (error) {
     res.status(500).send('Terjadi kesalahan pada server.');
     console.log(error);
@@ -244,9 +249,11 @@ app.post('/project/tambah', authMiddleware, async (req, res) => {
 app.delete('/projectDashboard/:id', authMiddleware, async (req, res) => {
   try {
     await Project.deleteOne({ _id: req.params.id });
-    res.redirect('/projectDashboard');
+
+    // Redirect dengan query string untuk membawa pesan sukses
+    res.redirect('/projectDashboard?success=Project berhasil dihapus');
   } catch (error) {
-    res.status(500).send('Gagal menghapus artikel');
+    res.status(500).send('Gagal menghapus project');
     console.log(error);
   }
 });
@@ -261,7 +268,7 @@ app.put('/project', authMiddleware, async (req, res) => {
       gambar: req.body.gambar,
     });
 
-    res.redirect('/projectDashboard');
+    res.redirect('/projectDashboard?success=Project berhasil diedit');
   } catch (err) {
     res.status(500).send('Server Error');
   }
