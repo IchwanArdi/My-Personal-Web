@@ -94,45 +94,81 @@
   </body>
 
   <script>
-
     document.addEventListener("DOMContentLoaded", function () {
       const closeButtons = document.querySelectorAll("[data-dismiss-target]");
-  
-      closeButtons.forEach(button => {
-          button.addEventListener("click", function () {
-              const targetId = this.getAttribute("data-dismiss-target");
-              const targetElement = document.querySelector(targetId);
-  
-              if (targetElement) {
-                  targetElement.classList.add("hidden"); // Sembunyikan elemen
-              }
-          });
+      const alertBox = document.querySelector("#alert");
+    
+      // Alert otomatis hilang setelah 3 detik
+      if (alertBox) {
+        setTimeout(() => {
+          alertBox.classList.add("hidden");
+        }, 3000);
+      }
+    
+      // Tombol close pada alert
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const targetId = this.getAttribute("data-dismiss-target");
+          const targetElement = document.querySelector(targetId);
+    
+          if (targetElement) {
+            targetElement.classList.add("hidden");
+          }
+        });
       });
-  });
-
-    document.querySelectorAll(".edit-btn").forEach((button) => {
-      button.addEventListener("click", function (e) {
-        let id = this.dataset.id; // Ambil ID dari atribut data-id
-        let deskripsi = this.dataset.deskripsi;
-        let kategori = this.dataset.kategori;
-        let link = this.dataset.link;
-        let gambar = this.dataset.gambar;
     
-        document.getElementById("projectId").value = id;
-        document.getElementById("deskripsi").value = deskripsi;
-        document.getElementById("kategori").value = kategori;
-        document.getElementById("link").value = link;
-        document.getElementById("gambar").value = gambar;
+      // Tombol Edit
+      document.querySelectorAll(".edit-btn").forEach((button) => {
+        button.addEventListener("click", function (e) {
+          e.preventDefault(); // Biar ga scroll ke atas
     
-        let formProject = document.getElementById("formProject");
-        formProject.action = "/project?_method=PUT";
-        
+          let id = this.dataset.id; // Ambil ID dari atribut data-id
+          let deskripsi = this.dataset.deskripsi;
+          let kategori = this.dataset.kategori;
+          let link = this.dataset.link;
+          let gambar = this.dataset.gambar;
+    
+          document.getElementById("projectId").value = id;
+          document.getElementById("deskripsi").value = deskripsi;
+          document.getElementById("kategori").value = kategori;
+          document.getElementById("link").value = link;
+          document.getElementById("gambar").value = gambar;
+    
+          let formProject = document.getElementById("formProject");
+          formProject.action = `/project/${id}?_method=PUT`;
+    
+          let submitButton = document.getElementById("submitButton");
+          submitButton.textContent = "Update Project";
+          submitButton.classList.remove("bg-blue-600");
+          submitButton.classList.add("bg-yellow-500");
+    
+          // Tombol batal
+          if (!document.querySelector("#cancelButton")) {
+            let cancelButton = document.createElement("button");
+            cancelButton.id = "cancelButton";
+            cancelButton.type = "button";
+            cancelButton.classList = "bg-gray-500 text-white px-4 py-2 ml-2 rounded hover:bg-gray-700";
+            cancelButton.textContent = "Batal";
+            cancelButton.addEventListener("click", resetForm);
+            submitButton.insertAdjacentElement("afterend", cancelButton);
+          }
+        });
+      });
+    
+      // Fungsi Reset Form
+      function resetForm() {
+        document.getElementById("formProject").reset();
+        document.getElementById("formProject").action = "/project/tambah";
         let submitButton = document.getElementById("submitButton");
-        submitButton.textContent = "Update Project";
-        submitButton.classList.remove("bg-blue-600");
-        submitButton.classList.add("bg-yellow-500");
-      });
-    });    
+        submitButton.textContent = "Tambah Project";
+        submitButton.classList.remove("bg-yellow-500");
+        submitButton.classList.add("bg-blue-600");
+    
+        let cancelButton = document.querySelector("#cancelButton");
+        if (cancelButton) cancelButton.remove();
+      }
+    });
+       
   </script>
   
 
