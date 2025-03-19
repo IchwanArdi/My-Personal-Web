@@ -77,3 +77,9 @@ body {
 #nav-slide {
   height: 100vh;
 }
+
+/* css untuk nav */
+.active2 {
+  border-bottom: 2px solid white; /* warna oranye */
+  transition: all 0.3s ease-in-out;
+}

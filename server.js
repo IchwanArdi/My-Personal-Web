@@ -12,7 +12,7 @@ app.use(
     secret: 'rahasia-ichwan', // Ganti dengan string rahasia yang kuat
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }, // Set true jika pakai HTTPS
+    cookie: { secure: true }, // Set true jika pakai HTTPS
   })
 );
 
@@ -70,7 +70,7 @@ app.get('/home', async (req, res) => {
     const latestProject = await Project.findOne().sort({ _id: -1 }); // Mengambil proyek terbaru berdasarkan ID terbaru
     const latestBlog = await Blog.findOne().sort({ _id: -1 }); // Mengambil Blog terbaru berdasarkan ID terbaru
     const latestPicture = await Images.findOne().sort({ _id: -1 }); // Mengambil Picture terbaru berdasarkan ID terbaru
-    res.render('index', { latestProject, latestBlog, latestPicture });
+    res.render('index', { latestProject, latestBlog, latestPicture, path: '/home' });
   } catch (error) {
     console.error('Error saat mengambil data proyek:', error);
     res.status(500).send('Terjadi kesalahan pada server');
@@ -80,7 +80,7 @@ app.get('/home', async (req, res) => {
 app.get('/blog', async (req, res) => {
   try {
     const blogs = await Blog.find().sort({ tanggal: -1 });
-    res.render('blog', { blogs });
+    res.render('blog', { blogs, path: '/blog' });
   } catch (error) {
     res.status(500).send('Terjadi kesalahan pada server');
   }
@@ -89,7 +89,7 @@ app.get('/blog', async (req, res) => {
 app.get('/picture', async (req, res) => {
   try {
     const images = await Images.find();
-    res.render('picture', { images });
+    res.render('picture', { images, path: '/picture' });
   } catch (error) {
     res.status(500).send('Terjadi kesalahan pada server');
   }
@@ -116,10 +116,10 @@ app.get('/project', async (req, res) => {
     if (category && category !== 'all') {
       projects = await Project.find({ kategori: category }).sort({ tanggal: -1 });
     } else {
-      projects = await Project.find();
+      projects = await Project.find().sort({ tanggal: -1 });
     }
 
-    res.render('project', { projects });
+    res.render('project', { projects, path: '/project' });
   } catch (error) {
     res.status(500).send('Terjadi kesalahan pada server');
   }
