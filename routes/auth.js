@@ -28,7 +28,6 @@ router.post('/login', async (req, res) => {
       nama: user.nama,
     };
 
-    console.log('Login berhasil:', req.session.user);
     res.redirect('/dashboard');
   } catch (error) {
     console.error('Error saat login:', error);

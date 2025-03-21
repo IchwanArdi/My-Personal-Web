@@ -2,10 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const session = require('express-session');
-const port = 3000;
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-const multer = require('multer');
 const path = require('path');
 const methodOverride = require('method-override');
 
@@ -17,7 +15,7 @@ connectDB();
 
 app.use(
   session({
-    secret: 'rahasia-ichwan', // Ganti dengan string rahasia yang kuat
+    secret: process.env.SESSION_SECRET || 'fallback-secret',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }, // Set true jika pakai HTTPS
@@ -35,12 +33,6 @@ app.use('/data', express.static(__dirname + '/data'));
 app.use(cors()); // Mengizinkan akses dari frontend
 app.use(methodOverride('_method'));
 
-// ambil schema di db
-const Project = require('./models/Project');
-const Login = require('./models/Login');
-const Images = require('./models/Images');
-const Blog = require('./models/Blog');
-
 // Routes
 app.use('/', require('./routes/index'));
 app.use('/', require('./routes/pictureRoutes'));
@@ -54,6 +46,8 @@ app.use((req, res) => {
   res.status(404).render('404');
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
 });
