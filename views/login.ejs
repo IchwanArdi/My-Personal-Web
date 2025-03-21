@@ -5,38 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/Logo.png" type="image/png" />
     <link href="/src/output.css" rel="stylesheet" />
-    <title>Picture | IchwanArdi</title>
+    <title>Login | IchwanArdi</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Noto+Sans+Hanunoo&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-slate-950 text-white">
-    <section id="main">
-      <div class="container mx-auto p-6 mt-2 sm:mt-20">
-        <!-- Loop Project -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6">
-          <!-- Form -->
-          <form action="/login" method="POST" class="w-full">
-            <div class="text-2xl text-white mb-5">Login</div>
-            <div class="text-semi text-white mb-5">Silakan masukkan email dan password Anda.</div>
+    <section id="main" class="flex items-center justify-center md:min-h-screen">
+      <div class="items-center justify-center rounded-2xl p-5 m-3  bg-slate-800">
+        <form action="/login" method="POST" class="w-full">
+          <div class="text-2xl text-white mb-5">Login</div>
+          <div class="text-semi text-white mb-5">Silakan masukkan email dan password Anda.</div>
 
-            <% if (error) { %>
-            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"><span class="font-medium">Login Gagal!</span> <%= error %></div>
-            <% } %>
+          <% if (error) { %>
+          <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"><span class="font-medium">Login Gagal!</span> <%= error %></div>
+          <% } %>
 
-            <div class="mb-6">
-              <label for="nama" class="block mb-2 text-sm font-medium text-gray-200">Your Name</label>
-              <input type="nama" id="nama" name="nama" class="bg-gray-700 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-            </div>
-            <div class="mb-6">
-              <label for="password" class="block mb-2 text-sm font-medium text-gray-200">Your password</label>
-              <input type="password" id="password" name="password" class="bg-gray-700 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
-            </div>
-            <a href="#" class="text-semi mb-5 block text-blue-400 hover:text-blue-500">Lupa password?</a>
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center cursor-pointer">Submit</button>
-          </form>
-        </div>
+          <div class="mb-6">
+            <label for="nama" class="block mb-2 text-sm font-medium text-gray-200">Your Name</label>
+            <input type="nama" id="nama" name="nama" class="bg-gray-700 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+          </div>
+          <div class="mb-6">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-200">Your password</label>
+            <input type="password" id="password" name="password" class="bg-gray-700 border border-gray-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+          </div>
+          <a href="#" class="text-semi mb-5 block text-blue-400 hover:text-blue-500">Lupa password?</a>
+          <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center cursor-pointer">Submit</button>
+        </form>
       </div>
     </section>
   </body>
