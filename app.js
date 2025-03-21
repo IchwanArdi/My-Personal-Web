@@ -7,7 +7,7 @@ const connectDB = require('./config/db');
 const path = require('path');
 const methodOverride = require('method-override');
 
-//Load config
+// Load config
 dotenv.config();
 
 // Connect to database
@@ -22,7 +22,7 @@ app.use(
   })
 );
 
-// Middleware untuk menangani form dan file statis
+// Middleware setup
 app.use(express.urlencoded({ extended: true }));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -30,10 +30,10 @@ app.use('/images', express.static(__dirname + '/public/img'));
 app.use('/uploads', express.static(__dirname + '/public/uploads'));
 app.use('/src', express.static(__dirname + '/src'));
 app.use('/data', express.static(__dirname + '/data'));
-app.use(cors()); // Mengizinkan akses dari frontend
+app.use(cors());
 app.use(methodOverride('_method'));
 
-// Routes
+// Routes setup
 app.use('/', require('./routes/index'));
 app.use('/', require('./routes/pictureRoutes'));
 app.use('/', require('./routes/blogRoutes'));
@@ -42,6 +42,7 @@ app.use('/', require('./routes/auth'));
 app.use('/', require('./routes/dashboard'));
 app.use('/', require('./routes/projectDashboard'));
 
+// 404 handler
 app.use((req, res) => {
   res.status(404).render('404');
 });
@@ -49,5 +50,5 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
