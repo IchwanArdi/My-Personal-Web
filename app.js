@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const path = require('path');
 const methodOverride = require('method-override');
+const MongoStore = require('connect-mongo');
 
 // Load config
 dotenv.config();
@@ -18,7 +19,11 @@ app.use(
     secret: process.env.SESSION_SECRET || 'fallback-secret',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }, // Set true jika pakai HTTPS
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+      ttl: 14 * 24 * 60 * 60, // Session bertahan 14 hari
+    }),
+    cookie: { secure: false },
   })
 );
 
