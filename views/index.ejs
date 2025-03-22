@@ -51,9 +51,7 @@
           <div class="absolute flex flex-col md:flex-row justify-center w-full text-white gap-x-8">
             <div class="w-full md:w-1/2 px-5">
               <a  href="/mainBlog/<%= encodeURIComponent(latestBlog.judul) %>">
-                <img src="<%= latestBlog && latestBlog.gambar ? '/uploads/' + latestBlog.gambar : '/img/default.png' %>" 
-                alt="Latest Blog Image" 
-                class="w-full h-44 sm:h-48 md:h-72 object-contain rounded-lg shadow-lg" />           
+                <img src="<%= latestBlog ? '/uploads/' + latestBlog.gambar : '/images/default.png' %>" alt="project-1" class="w-full h-44 sm:h-48 md:h-72 object-contain  rounded-lg shadow-lg" />
               </a>
             </div>
             <!-- Project Info -->
@@ -100,7 +98,3 @@
     </script>
   </body>
 </html>
-
-
-
-
