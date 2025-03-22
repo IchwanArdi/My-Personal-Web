@@ -31,9 +31,9 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
-app.use('/images', express.static(path.join(__dirname, 'public/img')));
+app.use(express.static('public'));
+app.use('/uploads', express.static('public/uploads'));
+app.use('/img', express.static('public/img'));
 app.use('/src', express.static(__dirname + '/src'));
 app.use('/data', express.static(__dirname + '/data'));
 app.use(cors());
