@@ -14,16 +14,28 @@ dotenv.config();
 // Connect to database
 connectDB();
 
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET || 'fallback-secret',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//       secure: process.env.NODE_ENV === 'production', // Hanya true saat production (deploy)  NODE_ENV=development untuk di localhost
+//       httpOnly: true, // Melindungi dari akses client-side JS
+//       maxAge: 14 * 24 * 60 * 60 * 1000, // 14 hari
+//     },
+//   })
+// );
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'fallback-secret',
     resave: false,
     saveUninitialized: true,
-    cookie: {
-      secure: process.env.NODE_ENV === 'production', // Hanya true saat production (deploy)  NODE_ENV=development untuk di localhost
-      httpOnly: true, // Melindungi dari akses client-side JS
-      maxAge: 14 * 24 * 60 * 60 * 1000, // 14 hari
-    },
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+      ttl: 14 * 24 * 60 * 60,
+    }),
   })
 );
 
@@ -32,8 +44,8 @@ app.use(express.urlencoded({ extended: true }));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
-app.use('/images', express.static(path.join(__dirname, 'public/img')));
+// app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+// app.use('/images', express.static(path.join(__dirname, 'public/img')));
 app.use('/images', express.static(__dirname + '/public/img'));
 app.use('/uploads', express.static(__dirname + '/public/uploads'));
 app.use('/src', express.static(__dirname + '/src'));
