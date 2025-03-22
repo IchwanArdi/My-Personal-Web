@@ -1,11 +1,11 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
 const session = require('express-session');
-const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-const path = require('path');
 const methodOverride = require('method-override');
+const app = express();
+const dotenv = require('dotenv');
+const path = require('path');
 const MongoStore = require('connect-mongo');
 
 // Load config
@@ -19,11 +19,11 @@ app.use(
     secret: process.env.SESSION_SECRET || 'fallback-secret',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URI,
-      ttl: 14 * 24 * 60 * 60, // Session bertahan 14 hari
-    }),
-    cookie: { secure: false },
+    cookie: {
+      secure: process.env.NODE_ENV === 'production', // Hanya true saat production (deploy)  NODE_ENV=development untuk di localhost
+      httpOnly: true, // Melindungi dari akses client-side JS
+      maxAge: 14 * 24 * 60 * 60 * 1000, // 14 hari
+    },
   })
 );
 
