@@ -19,10 +19,7 @@ app.use(
     secret: process.env.SESSION_SECRET || 'fallback-secret',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URI,
-      ttl: 14 * 24 * 60 * 60,
-    }),
+    cookie: { secure: process.env.NODE_ENV === 'development' }, // Hanya true jika di production
   })
 );
 

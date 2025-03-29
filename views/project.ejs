@@ -44,11 +44,11 @@
 
     <!-- main Blog -->
     <section id="project">
-      <div class="grid gap-2 mt-5 px-5 min-[375px]:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 daftar-project">
+      <div class="grid gap-2 mt-5 px-5 min-[375px]:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 daftar-project ">
         <% projects.forEach(data => { %>
-        <div class="aspect-[4/3] rounded-lg mt-5 px-3">
+        <div class="aspect-[4/3] rounded-lg mt-5 px-3 ">
           <a href="<%= data.link %>" target="_blank">
-            <img src="<%= data.gambar %>" alt="picture-8" class="bg-center w-full h-48 object-contain" />
+            <img src="<%= data.gambar %>" alt="picture-8" class="bg-center w-full h-48 object-fill " />
           </a>
           <div class="text-white judul-project">
             <span class="text-sm md:text-xs"><%= data.tanggal.toISOString().split('T')[0] %></span>
